@@ -1,0 +1,735 @@
+table_name,attribute_name,attribute_type,Description
+,,,
+accreditation,accreditation_body,varchar,
+,grading,varchar,
+,id,int4,
+,score,float8,
+,,,
+college,district_code,varchar,
+,id,int4,
+,is_dcf_applicable,bool,
+,name,varchar,
+,state_code,varchar,"REFERENCES ref_district(st_code, dist_code)"
+,survey_year,int4,"REFERENCES ref_university(id, survey_year)"
+,type_id,bpchar,REFERENCES ref_university_college_type(id)
+,university_id,bpchar,"REFERENCES ref_university(id, survey_year)"
+,,,
+college_affiliation,district_code,varchar,
+,id,int4,
+,is_dcf_applicable,bool,
+,name,varchar,
+,state_code,varchar,
+,survey_year,int4,
+,type_id,bpchar,
+,university_id,bpchar,
+,,,
+college_institution,address_line1,varchar,
+,address_line2,varchar,
+,area,float8,
+,autonomous,bool,
+,city,varchar,
+,college_type_id,bpchar,REFERENCES ref_university_college_type(id)
+,constructed_area,float8,
+,diploma_course_id,bpchar,REFERENCES ref_diploma_course(id)
+,district_code,bpchar,"REFERENCES ref_district(st_code, dist_code)'"
+,evening,bool,
+,financial_expenditure_id,int4,REFERENCES financial_expenditure(id)
+,financial_income_id,int4,REFERENCES financial_income(id)
+,girl_exclusive,bool,
+,has_diploma_courses,bool,
+,id,int4,"REFERENCES college(id, survey_year)"
+,infrastructure_id,int4,REFERENCES infrastructure(id)
+,is_accredited,bool,
+,is_foreign_students_enrolled,bool,
+,latitude,float8,
+,loan_id,int4,REFERENCES loan(id)
+,location,varchar,
+,longitude,float8,
+,management_id,bpchar,REFERENCES ref_institution_management(id)
+,name,varchar,
+,no_of_student_hostel,int4,
+,nodalofficer_id,int4,
+,offers_loan,bool,
+,offers_scholarship,bool,
+,other_speciality,varchar,
+,other_statutory_body,varchar,
+,remarks,varchar,REFERENCES scholarship(id)
+,scholarship_id,int4,
+,speciality_id,varchar,REFERENCES ref_speciality(id)
+,specialized,bool,
+,staff_quarter_available,bool,
+,staff_quarter_id,int4,
+,state_code,varchar,"REFERENCES ref_district(st_code, dist_code)"
+,statutory_body_id,varchar,
+,student_hostel_available,bool,
+,survey_year,int4,
+,university_id,bpchar,
+,website,varchar,
+,year_of_affiliation,int4,
+,year_of_establishment,int4,
+,,,
+college_institution_accreditation,accreditation_id,int4,REFERENCES accreditation(id)
+,college_institution_id,int4,"REFERENCES college_institution(id, survey_year)"
+,survey_year,int4,
+,,,
+college_institution_course,college_institution_id,int4,"REFERENCES college_institution(id, survey_year)"
+,course_id,int4,REFERENCES course(id)
+,survey_year,int4,
+,,,
+college_institution_course_enrolled_foreign_student_count,college_institution_id,int4,"REFERENCES college_institution(id, survey_year)"
+,course_enrolled_foreign_student_count_id,int4,REFERENCES course_enrolled_foreign_student_count(id)
+,survey_year,int4,
+,,,
+college_institution_course_enrolled_student_count,college_institution_id,int4,"REFERENCES college_institution(id, survey_year)"
+,course_enrolled_student_count_id,int4,REFERENCES course_enrolled_student_count(id)
+,survey_year,int4,
+,,,
+college_institution_course_examination_result,college_institution_id,int4,"REFERENCES college_institution(id, survey_year)"
+,course_examination_result_id,int4,REFERENCES course_examination_result(id)
+,survey_year,int4,
+,,,
+college_institution_department,college_institution_id,int4,"REFERENCES college_institution(id, survey_year)"
+,department_id,int4,REFERENCES department(id)
+,survey_year,int4,
+,,,
+college_institution_enrolled_distance_student,college_institution_id,int4,"REFERENCES college_institution(id, survey_year)"
+,enrolled_distance_student_institute_id,int4,REFERENCES enrolled_distance_student_institute(id)
+,survey_year,int4,
+,,,
+college_institution_enrolled_foreign_student_count,college_institution_id,int4,"REFERENCES college_institution(id, survey_year)"
+,enrolled_foreign_student_count_id,int4,REFERENCES enrolled_foreign_student_count(id)
+,survey_year,int4,
+,,,
+college_institution_enrolled_regular_student,college_institution_id,int4,"REFERENCES college_institution(id, survey_year)"
+,enrolled_regular_student_id,int4,REFERENCES enrolled_regular_student(id)
+,survey_year,int4,
+,,,
+college_institution_examination_result,college_institution_id,int4,"REFERENCES college_institution(id, survey_year)"
+,examination_result_id,int4,REFERENCES examination_result(id)
+,survey_year,int4,
+,,,
+college_institution_faculty,college_institution_id,int4,"REFERENCES college_institution(id, survey_year)"
+,faculty_id,int4,REFERENCES faculty(id)
+,survey_year,int4,
+,,,
+college_institution_non_teaching_staff_count,college_institution_id,int4,"REFERENCES college_institution(id, survey_year)"
+,non_teaching_staff_count_id,int4,REFERENCES non_teaching_staff_count(id)
+,survey_year,int4,
+,,,
+college_institution_student_hostel,college_institution_id,int4,"REFERENCES college_institution(id, survey_year)"
+,student_hostel_id,int4,REFERENCES student_hostel(id)
+,survey_year,int4,
+,,,
+college_institution_teaching_staff,college_institution_id,int4,"REFERENCES college_institution(id, survey_year)"
+,survey_year,int4,
+,teaching_staff_id,int4,REFERENCES teaching_staff(id)
+,,,
+college_institution_teaching_staff_sanctioned_strength,college_institution_id,int4,"REFERENCES college_institution(id, survey_year)"
+,survey_year,int4,
+,teaching_staff_sanctioned_strength_id,int4,REFERENCES teaching_staff_sanctioned_strength(id)
+,,,
+course,approving_statutory_body_id,bpchar,REFERENCES ref_programme_statutory_body(id)
+,approving_university_id,bpchar,"REFERENCES ref_university(id, survey_year)"
+,broad_discipline_group,bpchar,REFERENCES ref_broad_discipline_group(id)
+,broad_discipline_group_category_id,bpchar,REFERENCES ref_broad_discipline_group_category(id)
+,discipline,varchar,
+,duration_month,int4,
+,duration_year,int4,
+,examination_system_id,bpchar,REFERENCES ref_examination_system(id)
+,id,int4,
+,intake,int4,
+,level_id,bpchar,REFERENCES ref_course_level(id)
+,mode_id,bpchar,REFERENCES ref_course_mode(id)
+,no_of_applicants,int4,
+,only_through_colleges,bool,
+,programme_id,bpchar,REFERENCES ref_programme(id)
+,type_id,bpchar,
+,,,
+course_enrolled_foreign_student_count,course_id,int4,REFERENCES course(id)
+,enrolled_foreign_student_count_id,int4,REFERENCES enrolled_foreign_student_count(id)
+,id,int4,
+,,,
+course_enrolled_student_count,course_id,int4,REFERENCES course(id)
+,enrolled_student_count_id,int4,REFERENCES enrolled_student_count(id)
+,id,int4,
+,,,
+course_examination_result,course_id,int4,REFERENCES course(id)
+,examination_result_id,int4,REFERENCES examination_result(id)
+,id,int4,
+,,,
+department,id,int4,
+,name,varchar,
+,,,
+department_course,course_id,int4,REFERENCES course(id)
+,department_id,int4,REFERENCES department(id)
+,,,
+department_teaching_staff_count,department_id,int4,REFERENCES department(id)
+,teaching_staff_count_id,int4,REFERENCES teaching_staff_count(id)
+,,,
+enrolled_distance_student_institute,department_name,varchar,
+,faculty_name,varchar,
+,id,int4,
+,,,
+enrolled_distance_student_institute_count,enrolled_distance_student_institute_id,int4,REFERENCES enrolled_distance_student_institute(id)
+,enrolled_student_count_id,int4,REFERENCES enrolled_student_count(id)
+,,,
+enrolled_distance_student_university,district_code,bpchar,REFERENCES ref_district(dist_code)
+,id,int4,
+,regional_center_name,varchar,
+,state_code,bpchar,REFERENCES ref_district(st_code)
+,,,
+enrolled_distance_student_university_count,enrolled_distance_student_university_id,int4,REFERENCES enrolled_distance_student_university(id)
+,enrolled_student_count_id,int4,
+,,,
+enrolled_foreign_student_count,broad_discipline_group_id,bpchar,REFERENCES ref_broad_discipline_group(id)
+,country_id,int4,REFERENCES ref_country(country_id)
+,discipline,varchar,
+,girls,int4,
+,id,int4,
+,level_id,bpchar,REFERENCES ref_course_level(id)
+,programme_id,bpchar,REFERENCES ref_programme(id)
+,total,int4,
+,,,
+enrolled_regular_student,department_name,varchar,
+,faculty_name,varchar,
+,id,int4,
+,,,
+enrolled_regular_student_count,enrolled_regular_student_id,int4,REFERENCES enrolled_regular_student(id)
+,enrolled_student_count_id,int4,REFERENCES enrolled_student_count(id)
+,,,
+enrolled_student_count,broad_discipline_group_id,bpchar,REFERENCES ref_broad_discipline_group(id)
+,count_by_category_id,int4,REFERENCES persons_count_by_category(id)
+,course_mode_id,bpchar,REFERENCES ref_course_mode(id)
+,course_type_id,bpchar,REFERENCES ref_course_type(id)
+,discipline,varchar,
+,id,int4,
+,level_id,bpchar,REFERENCES ref_course_level(id)
+,programme_id,bpchar,REFERENCES ref_programme(id)
+,year,varchar,
+,,,
+examination_result,appeared_female,int4,
+,appeared_total,int4,
+,broad_discipline_group_id,bpchar,
+,course_level_id,bpchar,REFERENCES ref_course_level(id)
+,course_mode_id,bpchar,REFERENCES ref_course_mode(id)
+,discipline,varchar,
+,first_class_passed_female,int4,
+,first_class_passed_total,int4,
+,id,int4,
+,passed_female,int4,
+,passed_total,int4,
+,programme_id,bpchar,REFERENCES ref_programme(id)
+,,,
+faculty,id,int4,
+,name,varchar,
+,,,
+faculty_course,course_id,int4,REFERENCES course(id)
+,faculty_id,int4,REFERENCES faculty(id)
+,,,
+faculty_department,department_id,int4,REFERENCES department(id)
+,faculty_id,int4,REFERENCES faculty(id)
+,,,
+faculty_teaching_staff_count,faculty_id,int4,REFERENCES faculty(id)
+,teaching_staff_count_id,int4,REFERENCES teaching_staff_count(id)
+,,,
+financial_expenditure,buildings,float8,
+,grants_to_colleges,float8,
+,id,int4,
+,library_and_laboratory,float8,
+,other_expenses,float8,
+,research_activities,float8,
+,salary,float8,
+,scholorships,float8,
+,total,float8,
+,,,
+financial_income,donations,float8,
+,grants_from_distance_education_council,float8,
+,grants_from_local_boards,float8,
+,grants_from_other_central_govt_dept,float8,
+,grants_from_state_govt,float8,
+,grants_from_university,float8,
+,grants_from_university_grants_commission,float8,
+,id,int4,
+,interests,float8,
+,other_fees,float8,
+,other_income,float8,
+,sale_of_application_form,float8,
+,total,float8,
+,tuition_fee,float8,
+,,,
+infrastructure,auditorium,bool,
+,cafeteria,bool,
+,common_room,bool,
+,computer_center,bool,
+,conference_hall,bool,
+,connectivity_nkn,bool,
+,connectivity_nmeict,bool,
+,guest_house,bool,
+,gymnasium_fitness_center,bool,
+,health_center,bool,
+,id,int4,
+,indoor_stadium,bool,
+,laboratory,bool,
+,library,bool,
+,no_of_auditoriums,int4,
+,no_of_cafeteria,int4,
+,no_of_common_rooms,int4,
+,no_of_computer_centers,int4,
+,no_of_conference_halls,int4,
+,no_of_guest_houses,int4,
+,no_of_gymnasim_fitness_centers,int4,
+,no_of_health_centers,int4,
+,no_of_indoor_stadiums,int4,
+,no_of_laboratories,int4,
+,no_of_libraries,int4,
+,no_of_playgrounds,int4,
+,no_of_separate_rooms_for_girls,int4,
+,no_of_theatres,int4,
+,playground,bool,
+,separate_room_for_girls,bool,
+,solar_power_generation,bool,
+,theatre,bool,
+,,,
+loan,count_by_category_id,int4,persons_count_by_category(id)
+,id,int4,
+,,,
+nodal_officer,designation,varchar,
+,director_email,varchar,
+,director_name,varchar,
+,director_telephone,varchar,
+,email,varchar,
+,id,int4,
+,mobile,varchar,
+,name,varchar,
+,telephone,varchar,
+,,,
+non_teaching_staff_count,count_by_category_id,int4,REFERENCES persons_count_by_category(id)
+,group_id,bpchar,REFERENCES ref_non_teaching_staff_group(id)
+,id,int4,
+,posts_reserved_for_pwd,int4,
+,sanctioned_strength,int4,
+,staff_type_id,bpchar,REFERENCES ref_non_teaching_staff_type(id)
+,,,
+persons_count_by_category,id,int4,
+,muslim_minority_general_females,int4,
+,muslim_minority_general_total,int4,
+,muslim_minority_obc_females,int4,
+,muslim_minority_obc_total,int4,
+,muslim_minority_remarks_id,bpchar,REFERENCES ref_count_by_category_remarks(id)
+,muslim_minority_sc_females,int4,
+,muslim_minority_sc_total,int4,
+,muslim_minority_st_females,int4,
+,muslim_minority_st_total,int4,
+,muslim_minority_total_females,int4,
+,muslim_minority_total_persons,int4,
+,other_minority_general_females,int4,
+,other_minority_general_total,int4,
+,other_minority_obc_females,int4,
+,other_minority_obc_total,int4,
+,other_minority_remarks_id,bpchar,REFERENCES ref_count_by_category_remarks(id)
+,other_minority_sc_females,int4,
+,other_minority_sc_total,int4,
+,other_minority_st_females,int4,
+,other_minority_st_total,int4,
+,other_minority_total_females,int4,
+,other_minority_total_persons,int4,
+,pwd_general_females,int4,
+,pwd_general_total,int4,
+,pwd_obc_females,int4,
+,pwd_obc_total,int4,
+,pwd_remarks_id,bpchar,REFERENCES ref_count_by_category_remarks(id
+,pwd_sc_females,int4,
+,pwd_sc_total,int4,
+,pwd_st_females,int4,
+,pwd_st_total,int4,
+,pwd_total_females,int4,
+,pwd_total_persons,int4,
+,total_general_females,int4,
+,total_general_total,int4,
+,total_obc_females,int4,
+,total_obc_total,int4,
+,total_remarks_id,bpchar,REFERENCES ref_count_by_category_remarks(id)
+,total_sc_females,int4,
+,total_sc_total,int4,
+,total_st_females,int4,
+,total_st_total,int4,
+,total_total_females,int4,
+,total_total_persons,int4,
+,,,
+private_students_result,appeared_female,int4,
+,appeared_total,int4,
+,broad_discipline_group_category_id,bpchar,REFERENCES ref_broad_discipline_group_category(id)
+,broad_discipline_group_id,bpchar,REFERENCES ref_broad_discipline_group(id)
+,discipline,varchar,
+,first_class_passed_female,int4,
+,first_class_passed_total,int4,
+,id,int4,
+,level_id,bpchar,REFERENCES ref_course_level(id)
+,passed_female,int4,
+,passed_total,int4,
+,programme_id,bpchar,REFERENCES ref_programme(id)
+,,,
+ref_broad_discipline_group,category_id,bpchar,REFERENCES ref_broad_discipline_group_category(id)
+,discipline_group,varchar,
+,id,bpchar,
+,,,
+ref_broad_discipline_group_category,discipline_group_category,varchar,
+,id,bpchar,
+,,,
+ref_college_institution_statutory_body,id,bpchar,
+,statutory_body,varchar,
+,,,
+ref_count_by_category_remarks,id,bpchar,
+,remark,varchar,
+,,,
+ref_country,country_code,bpchar,
+,country_id,int4,
+,country_name,varchar,
+,,,
+ref_course_level,id,bpchar,
+,level,varchar,
+,name,varchar,
+,,,
+ref_course_mode,id,bpchar,
+,mode,varchar,
+,,,
+ref_course_type,type,varchar,
+,id,bpchar,
+,,,
+ref_diploma_course,id,bpchar,
+,type,varchar,
+,,,
+ref_district,dist_code,bpchar,
+,name,varchar,
+,sno,int4,
+,st_code,bpchar,
+,,,
+ref_document_module,id,int4,
+,name,bpchar,
+,,,
+ref_examination_system,id,bpchar,
+,system,varchar,
+,,,
+ref_institute_type,id,varchar,
+,name,varchar,
+,,,
+ref_institution_management,id,bpchar,
+,management,varchar,
+,,,
+ref_non_teaching_staff_group,group,varchar,
+,id,bpchar,
+,,,
+ref_non_teaching_staff_type,id,bpchar,
+,staff_type,varchar,
+,,,
+ref_programme,course_level_id,bpchar,REFERENCES ref_course_level(id)
+,id,bpchar,
+,programme,varchar,
+,,,
+ref_programme_broad_discipline_group_and_category,broad_discipline_group_category_id,bpchar,REFERENCES ref_broad_discipline_group_category(id)
+,broad_discipline_group_id,bpchar,REFERENCES ref_broad_discipline_group(id)
+,programme_id,bpchar,REFERENCES ref_programme(id)
+,,,
+ref_programme_statutory_body,id,bpchar,
+,statutory_body,varchar,
+,valid_for_form2,bool,
+,valid_for_form3,bool,
+,,,
+ref_speciality,id,varchar,
+,speciality,varchar,
+,valid_for_form1,bool,
+,valid_for_form2,bool,
+,,,
+ref_standalone_institution,id,int4,
+,name,varchar,
+,statebodyid,int4,REFERENCES ref_state_body(id)
+,statecode,bpchar,REFERENCES ref_state(st_code)
+,survey_year,int4,
+,,,
+ref_state,name,varchar,
+,st_code,bpchar,
+,,,
+ref_state_body,id,int4,
+,type,varchar,
+,,,
+ref_student_hostel_type,id,bpchar,
+,type,varchar,
+,,,
+ref_teaching_staff_designation,designation,varchar,
+,id,bpchar,
+,valid_for_form1,bool,
+,valid_for_form2,bool,
+,valid_for_form3,bool,
+,,,
+ref_teaching_staff_selection_mode,id,bpchar,
+,selection_mode,varchar,
+,,,
+ref_university,id,bpchar,
+,is_dcf_applicable,bool,
+,name,varchar,
+,statecode,varchar,REFERENCES ref_state(st_code)
+,survey_year,int4,
+,type_id,bpchar,REFERENCES ref_university_type(id)
+,,,
+ref_university_college_type,id,bpchar,
+,type,varchar,
+,,,
+ref_university_type,id,bpchar,
+,type,varchar,
+,,,
+regional_center,survey_year,int4,"REFERENCES university(id, survey_year)"
+,name,varchar,
+,id,int4,
+,district_code,bpchar,"REFERENCES ref_district(st_code, dist_code)"
+,state_code,bpchar,"REFERENCES ref_district(st_code, dist_code)"
+,no_of_study_centers,int4,
+,university_id,bpchar,"REFERENCES university(id, survey_year)"
+,,,
+staff_quarter,total,int4,
+,id,int4,
+,non_teaching_staff,int4,
+,teaching_staff,int4,
+,,,
+standalone_institution,year_of_recognition,int4,
+,city,varchar,
+,address_line2,varchar,
+,address_line1,varchar,
+,id,int4,
+,offers_distance_programme,bool,
+,offers_loan,bool,
+,year_of_establishment,int4,
+,state_code,varchar,"REFERENCES ref_district(st_code, dist_code)"
+,district_code,bpchar,"REFERENCES ref_district(st_code, dist_code)"
+,website,varchar,
+,area,float8,
+,constructed_area,float8,
+,offers_scholarship,bool,
+,is_foreign_students_enrolled,bool,
+,is_accredited,bool,
+,loan_id,int4,REFERENCES loan(id)
+,scholarship_id,int4,REFERENCES scholarship(id)
+,longitude,float8,
+,latitude,float8,
+,remarks,varchar,
+,infrastructure_id,int4,
+,financial_expenditure_id,int4,
+,financial_income_id,int4,
+,survey_year,int4,
+,name,varchar,
+,management_id,bpchar,REFERENCES ref_institution_management(id)
+,no_of_student_hostel,int4,
+,student_hostel_available,bool,
+,staff_quarter_id,int4,
+,staff_quarter_available,bool,
+,girl_exclusive,bool,
+,university_id,bpchar,
+,awards_degree_through_university,bool,
+,location,varchar,
+,nodalofficer_id,int4,
+,,,
+standalone_institution_accreditation,survey_year,int4,
+,accreditation_id,int4,REFERENCES accreditation(id)
+,standalone_institution_id,int4,"REFERENCES standalone_institution(id, survey_year)"
+,,,
+standalone_institution_course,survey_year,int4,"REFERENCES standalone_institution(id, survey_year)"
+,standalone_institution_id,int4,"REFERENCES standalone_institution(id, survey_year)"
+,course_id,int4,REFERENCES course(id)
+,,,
+standalone_institution_course_enrolled_foreign_student_count,survey_year,int4,"REFERENCES standalone_institution(id, survey_year)"
+,standalone_institution_id,int4,"REFERENCES standalone_institution(id, survey_year)"
+,course_enrolled_foreign_student_count_id,int4,REFERENCES course_enrolled_foreign_student_count(id)
+,,,
+standalone_institution_course_enrolled_student_count,standalone_institution_id,int4,"REFERENCES standalone_institution(id, survey_year)"
+,course_enrolled_student_count_id,int4,REFERENCES course_enrolled_student_count(id)
+,survey_year,int4,"REFERENCES standalone_institution(id, survey_year)"
+,,,
+standalone_institution_course_examination_result,standalone_institution_id,int4,"REFERENCES standalone_institution(id, survey_year)"
+,survey_year,int4,"REFERENCES standalone_institution(id, survey_year)"
+,course_examination_result_id,int4,REFERENCES course_examination_result(id)
+,,,
+standalone_institution_department,department_id,int4,REFERENCES department(id)
+,survey_year,int4,"REFERENCES standalone_institution(id, survey_year)"
+,standalone_institution_id,int4,"REFERENCES standalone_institution(id, survey_year)"
+,,,
+standalone_institution_enrolled_distance_student,survey_year,int4,"REFERENCES standalone_institution(id, survey_year)"
+,standalone_institution_id,int4,"REFERENCES standalone_institution(id, survey_year)"
+,enrolled_distance_student_institute_id,int4,REFERENCES enrolled_distance_student_institute(id)
+,,,
+standalone_institution_enrolled_foreign_student_count,enrolled_foreign_student_count_id,int4,REFERENCES enrolled_foreign_student_count(id)
+,standalone_institution_id,int4,"REFERENCES standalone_institution(id, survey_year)"
+,survey_year,int4,"REFERENCES standalone_institution(id, survey_year)"
+,,,
+standalone_institution_enrolled_regular_student,enrolled_regular_student_id,int4,REFERENCES enrolled_regular_student(id)
+,survey_year,int4,"REFERENCES standalone_institution(id, survey_year)"
+,standalone_institution_id,int4,"REFERENCES standalone_institution(id, survey_year)"
+,,,
+standalone_institution_examination_result,survey_year,int4,"REFERENCES standalone_institution(id, survey_year)"
+,examination_result_id,int4,REFERENCES examination_result(id)
+,standalone_institution_id,int4,"REFERENCES standalone_institution(id, survey_year)"
+,,,
+standalone_institution_faculty,standalone_institution_id,int4,"REFERENCES standalone_institution(id, survey_year)"
+,faculty_id,int4,REFERENCES faculty(id)
+,survey_year,int4,"REFERENCES standalone_institution(id, survey_year)"
+,,,
+standalone_institution_non_teaching_staff_count,survey_year,int4,"REFERENCES standalone_institution(id, survey_year)"
+,non_teaching_staff_count_id,int4,REFERENCES non_teaching_staff_count(id)
+,standalone_institution_id,int4,"REFERENCES standalone_institution(id, survey_year)"
+,,,
+standalone_institution_student_hostel,standalone_institution_id,int4,"REFERENCES standalone_institution(id, survey_year)"
+,survey_year,int4,"REFERENCES standalone_institution(id, survey_year)"
+,student_hostel_id,int4,REFERENCES student_hostel(id)
+,,,
+standalone_institution_teaching_staff,survey_year,int4,"REFERENCES standalone_institution(id, survey_year)"
+,standalone_institution_id,int4,"REFERENCES standalone_institution(id, survey_year)"
+,teaching_staff_id,int4,REFERENCES teaching_staff(id)
+,,,
+standalone_institution_teaching_staff_sanctioned_strength,standalone_institution_id,int4,"REFERENCES standalone_institution(id, survey_year)"
+,survey_year,int4,"REFERENCES standalone_institution(id, survey_year)"
+,teaching_staff_sanctioned_strength_id,int4,REFERENCES teaching_staff_sanctioned_strength(id)
+,,,
+student_hostel,id,int4,
+,intake_capacity,int4,
+,name,varchar,
+,students_residing,int4,
+,type_id,bpchar,REFERENCES ref_student_hostel_type(id)
+,,,
+teaching_staff,department_name,varchar,
+,faculty_name,varchar,
+,id,int4,
+,,,
+teaching_staff_count,count_by_category_id,int4,REFERENCES persons_count_by_category(id)
+,designation_id,bpchar,REFERENCES ref_teaching_staff_designation(id)
+,teaching_staff_id,int4,REFERENCES teaching_staff(id)
+,id,int4,
+,selection_mode_id,bpchar,REFERENCES ref_teaching_staff_selection_mode(id)
+,grade_pay,varchar,
+,,,
+teaching_staff_sanctioned_strength,designation_id,bpchar,REFERENCES ref_teaching_staff_designation(id)
+,id,int4,
+,in_position,int4,
+,sanctioned_strength,int4,
+,vacancy,int4,
+,,,
+university,address_line1,varchar,
+,address_line2,varchar,
+,area,float8,
+,city,varchar,
+,constituted_from_colleges,bool,
+,constructed_area,float8,
+,district_code,bpchar,"REFERENCES ref_district(st_code, dist_code)"
+,financial_expenditure_id,int4,REFERENCES financial_expenditure(id)
+,financial_income_id,int4,REFERENCES financial_income(id)
+,girl_exclusive,bool,
+,has_department_regular_courses,bool,
+,has_faculty_regular_courses,bool,
+,has_other_regular_courses,bool,
+,id,bpchar,"REFERENCES ref_university(id, survey_year)"
+,infrastructure_id,int4,REFERENCES infrastructure(id)
+,is_accredited,bool,
+,is_foreign_students_enrolled,bool,
+,latitude,float8,
+,loan_id,int4,REFERENCES loan(id)
+,location,varchar,
+,longitude,float8,
+,name,varchar,
+,no_of_regional_centers,int4,
+,no_of_student_hostel,int4,
+,nodal_officer_id,int4,REFERENCES nodal_officer(id)
+,offers_distance_programme,bool,
+,offers_loan,bool,
+,offers_scholarship,bool,
+,other_speciality,varchar,
+,other_university_type,varchar,
+,remarks,varchar,
+,scholarship_id,int4,REFERENCES scholarship(id)
+,speciality_id,varchar,REFERENCES ref_speciality(id)
+,specialized,bool,
+,staff_quarter_available,bool,
+,staff_quarter_id,int4,REFERENCES staff_quarter(id)
+,state_code,bpchar,"REFERENCES ref_district(st_code, dist_code)"
+,student_hostel_available,bool,
+,survey_year,int4,"REFERENCES ref_university(id, survey_year)"
+,type_id,bpchar,REFERENCES ref_university_type(id)
+,website,varchar,
+,year_of_establishment,int4,
+,year_when_declared_university,int4,
+,,,
+university_accreditation,accreditation_id,int4,REFERENCES accreditation(id)
+,university_id,bpchar,"REFERENCES university(id, survey_year)"
+,survey_year,int4,"REFERENCES university(id, survey_year)"
+,,,
+university_college_examination_result,college_id,int4,"REFERENCES college(id, survey_year)"
+,examination_result_id,int4,REFERENCES examination_result(id)
+,survey_year,int4,"REFERENCES college(id, survey_year)"
+,,,
+university_course,survey_year,int4,"REFERENCES university(id, survey_year)"
+,university_id,bpchar,"REFERENCES university(id, survey_year)"
+,course_id,int4,REFERENCES course(id)
+,,,
+university_course_enrolled_foreign_student_count,survey_year,int4," REFERENCES university(id, survey_year)"
+,university_id,bpchar," REFERENCES university(id, survey_year)"
+,course_enrolled_foreign_student_count_id,int4,REFERENCES course_enrolled_foreign_student_count(id)
+,,,
+university_course_enrolled_student_count,course_enrolled_student_count_id,int4,REFERENCES course_enrolled_student_count(id)
+,university_id,bpchar,"REFERENCES university(id, survey_year)"
+,survey_year,int4,"REFERENCES university(id, survey_year)"
+,,,
+university_course_examination_result,university_id,bpchar,"REFERENCES university(id, survey_year)"
+,course_examination_result_id,int4,REFERENCES course_examination_result(id)
+,survey_year,int4,"REFERENCES university(id, survey_year)"
+,,,
+university_department,university_id,bpchar,"REFERENCES university(id, survey_year)"
+,department_id,int4,REFERENCES department(id)
+,survey_year,int4,"REFERENCES university(id, survey_year)"
+,,,
+university_enrolled_distance_student,university_id,bpchar,"REFERENCES university(id, survey_year)"
+,survey_year,int4,"REFERENCES university(id, survey_year)"
+,enrolled_distance_student_university_id,int4,REFERENCES enrolled_distance_student_university(id)
+,,,
+university_enrolled_foreign_student_count,university_id,bpchar,"REFERENCES university(id, survey_year)"
+,survey_year,int4,"REFERENCES university(id, survey_year)"
+,enrolled_foreign_student_count_id,int4,REFERENCES enrolled_foreign_student_count(id)
+,,,
+university_enrolled_regular_student,university_id,bpchar,"REFERENCES university(id, survey_year)"
+,enrolled_regular_student_id,int4,REFERENCES enrolled_regular_student(id)
+,survey_year,int4,"REFERENCES university(id, survey_year)"
+,,,
+university_examination_result,examination_result_id,int4,REFERENCES examination_result(id)
+,survey_year,int4,"REFERENCES university(id, survey_year)"
+,university_id,bpchar,"REFERENCES university(id, survey_year)"
+,,,
+university_faculty,faculty_id,int4,REFERENCES faculty(id)
+,survey_year,int4,"REFERENCES university(id, survey_year)"
+,university_id,bpchar,"REFERENCES university(id, survey_year)"
+,,,
+university_non_teaching_staff_count,non_teaching_staff_count_id,int4,REFERENCES non_teaching_staff_count(id)
+,university_id,bpchar,"REFERENCES university(id, survey_year)"
+,survey_year,int4,"REFERENCES university(id, survey_year)"
+,,,
+university_private_students_result,private_students_result_id,int4,REFERENCES private_students_result(id)
+,survey_year,int4,"REFERENCES university(id, survey_year)"
+,university_id,bpchar,"REFERENCES university(id, survey_year)"
+,,,
+university_student_hostel,survey_year,int4,"REFERENCES university(id, survey_year)"
+,university_id,bpchar,"REFERENCES university(id, survey_year)"
+,student_hostel_id,int4,REFERENCES student_hostel(id)
+,,,
+university_teaching_staff,university_id,bpchar,"REFERENCES university(id, survey_year)"
+,teaching_staff_id,int4,REFERENCES teaching_staff(id)
+,survey_year,int4,"REFERENCES university(id, survey_year)"
+,,,
+university_teaching_staff_sanctioned_strength,survey_year,int4,"REFERENCES university(id, survey_year)"
+,university_id,bpchar,"REFERENCES university(id, survey_year)"
+,teaching_staff_sanctioned_strength_id,int4,REFERENCES teaching_staff_sanctioned_strength(id
+,,,
+upgrade_university,upgrade_datetime,timestamp,
+,name,varchar,
+,university_id,bpchar,"REFERENCES university(id, survey_year)"
+,district_code,varchar,
+,state_code,varchar,
+,type_id,bpchar,
+,survey_year,int4,
+,user_id,varchar,REFERENCES user_master(id)
+,college_id,bpchar,
+,action_name,varchar,
+,id,int4,
